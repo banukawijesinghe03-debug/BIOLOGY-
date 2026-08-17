@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Scientia Academy — Biology 2027 Student Portal</title>
+<meta name="theme-color" content="#06120d">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<style>
+:root{
+  --bg:#04110a;--panel:#081d13;--panel2:#0b2619;--line:rgba(116,205,153,.16);
+  --green:#1e8b59;--green2:#55d98a;--text:#effff5;--muted:#91ae9d;
+  --gold:#c8a96b;--danger:#e56c6c;--blue:#6bb5ff;
+}
+*{box-sizing:border-box} body{margin:0;min-height:100vh;background:
+radial-gradient(circle at 10% 0%,rgba(38,135,88,.18),transparent 35%),
+radial-gradient(circle at 100% 100%,rgba(11,75,47,.28),transparent 42%),
+linear-gradient(145deg,#031009,#071a10 55%,#04130c);color:var(--text);
+font-family:"Plus Jakarta Sans",Arial,sans-serif}
+button,input,select{font:inherit}.hidden{display:none!important}
+.wrap{width:min(1050px,94%);margin:30px auto 50px}.card{background:rgba(7,29,19,.9);
+border:1px solid var(--line);border-radius:20px;box-shadow:0 20px 60px rgba(0,0,0,.28)}
+.login{max-width:760px;margin:7vh auto;padding:34px}.brand{display:inline-flex;gap:8px;align-items:center;
+padding:8px 14px;border:1px solid rgba(85,217,138,.25);border-radius:99px;color:#7ce5a6;background:rgba(30,139,89,.12)}
+h1{font-size:30px;margin:20px 0 7px}.sub{color:var(--muted);line-height:1.6}.tabs{display:flex;gap:8px;margin:22px 0}
+.tab{flex:1;padding:12px;border:1px solid var(--line);background:#06160e;color:var(--muted);border-radius:10px;cursor:pointer;font-weight:700}
+.tab.active{background:linear-gradient(135deg,#1f9b64,#12633f);color:white}
+.btn{border:0;border-radius:10px;padding:12px 15px;cursor:pointer;font-weight:800}
+.google{width:100%;background:#fff;color:#152016}.primary{background:linear-gradient(135deg,#219b64,#12613e);color:#fff}
+.gold{background:linear-gradient(135deg,#d4b675,#a27c40);color:#07140c}.ghost{background:#0a2115;color:#b7d4c3;border:1px solid var(--line)}
+.danger{background:#351414;color:#ffb0b0;border:1px solid #6b2a2a}
+.msg{margin-top:12px;padding:11px;border-radius:10px;font-size:12px;display:none}
+.err{background:rgba(229,108,108,.1);border:1px solid rgba(229,108,108,.3);color:#ffb5b5}.ok{background:rgba(85,217,138,.1);border:1px solid rgba(85,217,138,.25);color:#9af0ba}
+.formgrid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.field label{display:block;color:#a8c4b3;font-size:11px;font-weight:700;margin-bottom:6px}
+.field input,.field select{width:100%;padding:11px 12px;border-radius:9px;border:1px solid var(--line);background:#06170e;color:#fff;outline:none}
+.field input:focus{border-color:#4cc985}.full{grid-column:1/-1}
+.small{font-size:11px;color:var(--muted);line-height:1.5}.check{display:flex;gap:8px;align-items:flex-start;font-size:11px;color:#9fb9a8}
+.portal-head{display:flex;align-items:center;justify-content:space-between;gap:15px;padding:16px 18px;border-bottom:1px solid var(--line)}
+.portal-head strong{display:block;font-size:14px}.portal-head span{display:block;color:var(--muted);font-size:10px;margin-top:3px}.user{display:flex;align-items:center;gap:99px}
+.avatar{width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:#d5a948;color:#09150d;font-weight:800;font-size:12px}
+.portal-body{padding:18px}.toolbar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}.toolbar .btn{font-size:11px}
+.progress{padding:17px;background:linear-gradient(145deg,#09291a,#061a10);border:1px solid var(--line);border-radius:17px;margin-bottom:18px}
+.ptop{display:flex;justify-content:space-between;gap:12px;align-items:center}.ptitle{font-weight:800;font-size:14px}.pct{color:#72dfa0;font-weight:800}
+.track{height:9px;border-radius:99px;background:#0b2518;overflow:hidden;margin:12px 0}.fill{height:100%;width:0;background:linear-gradient(90deg,#167548,#55d98a);transition:.25s}
+.month-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}.mstat{padding:9px;background:rgba(255,255,255,.025);border:1px solid var(--line);border-radius:9px}
+.mstat b{font-size:10px;display:block}.mstat span{font-size:9px;color:var(--muted)}
+.mini{height:4px;background:#102a1c;border-radius:99px;overflow:hidden;margin-top:5px}.mini i{display:block;height:100%;background:#42be7b;width:0}
+.lang{display:flex;gap:8px;margin-bottom:18px}.lang button{flex:1}
+.month{padding:16px;margin-bottom:14px;background:rgba(7,29,19,.92);border:1px solid var(--line);border-radius:15px}
+.mhead{display:flex;justify-content:space-between;align-items:center;gap:10px}.mtitle{font-size:14px;font-weight:800;color:#71d99c}
+.badge{font-size:9px;padding:5px 8px;border-radius:99px}.locked{color:#ffaaaa;background:#321616}.unlocked{color:#8ff0b0;background:#0d3a24}
+.unlock{display:flex;gap:8px;margin-top:13px}.unlock input{flex:1;min-width:0;background:#06160e;border:1px solid var(--line);border-radius:9px;padding:10px;color:#fff}
+.content{display:none;margin-top:16px;border-top:1px solid var(--line);padding-top:16px}
+.video{background:#010603;border:1px solid rgba(85,217,138,.16);border-radius:13px;overflow:hidden}
+.vhead{padding:9px 11px;background:#082317;display:flex;justify-content:space-between;font-size:10px;font-weight:800}
+.player{aspect-ratio:16/9;background:#000;position:relative}.player iframe{width:100%;height:100%;border:0;display:block}
+.vnote{padding:8px 10px;font-size:9px;color:#719383}.support{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}.support a{text-decoration:none;font-size:10px}
+.audit{margin-top:15px;padding:14px;background:#050f0a;border:1px solid var(--line);border-radius:13px}
+.audit h3{font-size:12px;color:#7ee0a4;margin:0 0 10px}.checkrow{display:flex;gap:8px;margin:7px 0;font-size:10px;color:#9ab6a5;line-height:1.45}
+.checkrow input{accent-color:#48c47e;margin-top:2px}.weekline{display:flex;justify-content:space-between;font-size:10px;color:#9ab6a5;margin-top:13px}.pill{color:#72dfa0;font-weight:800}
+.notice{padding:11px;border-radius:10px;background:#0a2517;border:1px solid var(--line);font-size:10px;color:#9db9a8;margin-bottom:13px}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.75);display:grid;place-items:center;padding:15px;z-index:50}.modalbox{width:min(760px,100%);max-height:92vh;overflow:auto;padding:20px}
+.modalhead{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}.modalhead h2{font-size:17px;margin:0}
+.adminrow{padding:12px;border:1px solid var(--line);border-radius:10px;margin:8px 0;background:#071b11;font-size:11px}
+.adminrow button{margin-top:8px;margin-right:5px;font-size:10px;padding:7px 9px}
+@media(max-width:700px){.month-grid{grid-template-columns:repeat(2,1fr)}.formgrid{grid-template-columns:1fr}.full{grid-column:auto}.login{padding:23px;margin-top:25px}.wrap{width:96%;margin-top:14px}h1{font-size:25px}.portal-body{padding:12px}.portal-head{padding:12px}}
+</style>
+</head>
+<body>
+
+<div id="loginView" class="wrap">
+  <div class="card login">
+    <div class="brand"><i class="fa-solid fa-graduation-cap"></i> Scientia Academy</div>
+    <h1>100-Hour Student Portal</h1>
+    <div class="sub">Biology 2027 A/L Theory & Revision Course</div>
+
+    <div class="tabs">
+      <button id="loginTab" class="tab active">Student Login</button>
+      <button id="regTab" class="tab">Free Registration</button>
+    </div>
+
+    <section id="loginPanel">
+      <button id="googleLogin" class="btn google"><i class="fa-brands fa-google"></i>&nbsp; Sign in with Google</button>
+      <div style="height:10px"></div>
+      <div class="notice">Paid and activated students can sign in with their verified phone number. SMS OTP uses Firebase reCAPTCHA protection.</div>
+      <div class="formgrid">
+        <div class="field full"><label>WhatsApp / Phone Number</label><input id="phoneLogin" placeholder="+94 7XXXXXXXX"></div>
+      </div>
+      <div style="margin-top:10px"><button id="sendOtp" class="btn primary" style="width:100%">Send OTP</button></div>
+      <div id="otpBox" class="hidden" style="margin-top:10px">
+        <input id="otp" class="field input" placeholder="Enter SMS OTP" style="width:100%;padding:11px;background:#06170e;color:#fff;border:1px solid var(--line);border-radius:9px">
+        <button id="verifyOtp" class="btn primary" style="width:100%;margin-top:8px">Verify & Enter Portal</button>
+      </div>
+      <div id="recaptcha-login" style="margin-top:10px"></div>
+    </section>
+
+    <section id="regPanel" class="hidden">
+      <div class="notice">Registration is free. Payment is NOT required to register. Your account becomes course-active only after payment is verified by the academy.</div>
+      <button id="googleRegister" class="btn google" style="width:100%"><i class="fa-brands fa-google"></i>&nbsp; Register with Google</button>
+      <div id="regForm" class="hidden" style="margin-top:15px">
+        <div class="formgrid">
+          <div class="field"><label>Student Full Name *</label><input id="r_name"></div>
+          <div class="field"><label>WhatsApp Number *</label><input id="r_phone" placeholder="+94 7XXXXXXXX"></div>
+          <div class="field"><label>School *</label><input id="r_school"></div>
+          <div class="field"><label>A/L Year *</label><select id="r_al"><option value="">Select</option><option>2027</option><option>2028</option><option>2029</option><option>Other</option></select></div>
+          <div class="field"><label>Student NIC *</label><input id="r_nic"></div>
+          <div class="field"><label>Parent / Guardian Name *</label><input id="r_guardian"></div>
+          <div class="field"><label>Parent / Guardian Phone *</label><input id="r_guardian_phone"></div>
+          <div class="field"><label>Parent / Guardian NIC *</label><input id="r_guardian_nic"></div>
+          <div class="field full"><label class="check"><input type="checkbox" id="r_consent"> I confirm that the information is accurate and consent to its use for course administration.</label></div>
+        </div>
+        <div id="recaptcha-register" style="margin-top:12px"></div>
+        <button id="verifyRegisterPhone" class="btn primary" style="width:100%;margin-top:12px">Verify Phone & Complete Registration</button>
+        <div id="regOtpBox" class="hidden" style="margin-top:10px">
+          <input id="regOtp" placeholder="Enter SMS OTP" style="width:100%;padding:11px;background:#06170e;color:#fff;border:1px solid var(--line);border-radius:9px">
+          <button id="finishRegister" class="btn gold" style="width:100%;margin-top:8px">Finish Registration</button>
+        </div>
+      </div>
+    </section>
+    <div id="message" class="msg"></div>
+  </div>
+</div>
+
+<div id="portalView" class="wrap hidden">
+  <div class="card">
+    <header class="portal-head">
+      <div><strong>Scientia Academy — Biology 2027</strong><span id="cloudStatus">Secure student portal</span></div>
+      <div class="user"><div id="avatar" class="avatar">S</div><span id="userEmail" style="font-size:10px;color:#a9c3b3"></span><button id="logout" class="btn danger" style="padding:7px 9px"><i class="fa-solid fa-right-from-bracket"></i></button></div>
+    </header>
+
+    <div class="portal-body">
+      <div class="toolbar">
+        <button id="pdfBtn" class="btn gold"><i class="fa-solid fa-file-pdf"></i> Progress PDF</button>
+        <button id="refreshBtn" class="btn ghost"><i class="fa-solid fa-rotate"></i> Refresh</button>
+        <button id="adminBtn" class="btn ghost hidden"><i class="fa-solid fa-user-shield"></i> Admin</button>
+      </div>
+
+      <div class="progress">
+        <div class="ptop"><div class="ptitle"><i class="fa-solid fa-chart-line"></i> Entire Course Progress</div><div id="overallPct" class="pct">0%</div></div>
+        <div class="track"><div id="overallFill" class="fill"></div></div>
+        <div id="monthStats" class="month-grid"></div>
+      </div>
+
+      <div class="lang">
+        <button id="sinBtn" class="btn primary">Sinhala Medium</button>
+        <button id="engBtn" class="btn ghost">English Medium</button>
+      </div>
+      <div id="sinContent"></div>
+      <div id="engContent" class="hidden"></div>
+    </div>
+  </div>
+</div>
+
+<div id="adminModal" class="modal hidden">
+  <div class="card modalbox">
+    <div class="modalhead"><h2>Admin — Student Access</h2><button id="closeAdmin" class="btn danger">Close</button></div>
+    <div class="notice">Payment approval is intentionally manual. Only a server-enforced Firestore rule should allow admin updates to accessStatus.</div>
+    <div id="adminList">Loading...</div>
+  </div>
+</div>
+
+<script type="module">
+import {initializeApp} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
+import {
+  getAuth, GoogleAuthProvider, signInWithPopup, signInWithRedirect, getRedirectResult,
+  onAuthStateChanged, signOut, RecaptchaVerifier, signInWithPhoneNumber,
+  linkWithCredential, PhoneAuthProvider
+} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
+import {
+  getFirestore, doc, getDoc, setDoc, updateDoc, collection, getDocs, query, orderBy
+} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
+
+const firebaseConfig={
+  apiKey:"AIzaSyDkUnbL1QFJsN3e_FeTvPxwjOhhWtkaHWg",
+  authDomain:"biology2027portal.firebaseapp.com",
+  projectId:"biology2027portal",
+  storageBucket:"biology2027portal.firebasestorage.app",
+  messagingSenderId:"1080917473117",
+  appId:"1:1080917473117:web:27cb3c45e24b922e215ab4"
+};
+const app=initializeApp(firebaseConfig), auth=getAuth(app), db=getFirestore(app);
+const googleProvider=new GoogleAuthProvider();
+googleProvider.setCustomParameters({prompt:"select_account"});
+
+const ADMIN_EMAILS=["vidusenbhanuka@gmail.com"];
+const monthPasswords={
+  m1:"Bio27#M1$K8",m2:"Bio27#M2$P4",m3:"Bio27#M3$X9",m4:"Bio27#M4$V2",
+  m5:"Bio27#M5$L7",m6:"Bio27#M6$Q3",m7:"Bio27#M7$W5",m8:"Bio27#M8$R1"
+};
+
+/* Keep existing Month 01 playlists. Add the remaining playlist IDs here when available. */
+const playlists={
+  m1:{
+    sinhala:"PLknJfga_PCc_akD9ooopp1EF4yOdY0toO",
+    english:"PLknJfga_PCc-m5i46JIEae9IdWeKgAEg7"
+  },
+  m2:{sinhala:"",english:""},m3:{sinhala:"",english:""},m4:{sinhala:"",english:""},
+  m5:{sinhala:"",english:""},m6:{sinhala:"",english:""},m7:{sinhala:"",english:""},m8:{sinhala:"",english:""}
+};
+
+let currentUser=null,currentStudent=null,confirmationResult=null,registrationConfirmation=null;
+let loginRecaptcha=null,registerRecaptcha=null,players={};
+
+const $=id=>document.getElementById(id);
+function msg(text,type="err"){const e=$("message");e.textContent=text;e.className="msg "+(type==="ok"?"ok":"err");e.style.display="block"}
+function hideMsg(){$("message").style.display="none"}
+function normalizePhone(v){return v.trim().replace(/[^\d+]/g,"")}
+function isAdmin(){return !!currentUser && ADMIN_EMAILS.includes((currentUser.email||"").toLowerCase())}
+
+function switchAuthTab(tab){
+  hideMsg();
+  $("loginTab").classList.toggle("active",tab==="login");$("regTab").classList.toggle("active",tab==="reg");
+  $("loginPanel").classList.toggle("hidden",tab!=="login");$("regPanel").classList.toggle("hidden",tab!=="reg");
+}
+$("loginTab").onclick=()=>switchAuthTab("login");$("regTab").onclick=()=>switchAuthTab("reg");
+
+async function googleLogin(){
+  hideMsg();
+  try{
+    await signInWithPopup(auth,googleProvider);
+  }catch(e){
+    if(e.code==="auth/popup-blocked"||e.code==="auth/popup-cancelled"){
+      await signInWithRedirect(auth,googleProvider);
+      return;
+    }
+    msg("Google sign-in failed: "+e.message);
+  }
+}
+$("googleLogin").onclick=googleLogin;
+
+$("googleRegister").onclick=async()=>{
+  hideMsg();
+  try{
+    await signInWithPopup(auth,googleProvider);
+    $("regForm").classList.remove("hidden");
+    $("googleRegister").classList.add("hidden");
+  }catch(e){msg("Google registration failed: "+e.message)}
+};
+
+getRedirectResult(auth).catch(e=>{if(e.code)msg("Sign-in failed: "+e.message)});
+
+function setupRecaptcha(containerId){
+  const container=$(containerId);
+  if(containerId==="recaptcha-login" && loginRecaptcha) return loginRecaptcha;
+  if(containerId==="recaptcha-register" && registerRecaptcha) return registerRecaptcha;
+  const r=new RecaptchaVerifier(auth,containerId,{size:"normal"});
+  if(containerId==="recaptcha-login") loginRecaptcha=r; else registerRecaptcha=r;
+  return r;
+}
+
+$("sendOtp").onclick=async()=>{
+  hideMsg();
+  const phone=normalizePhone($("phoneLogin").value);
+  if(!/^\+94\d{9}$/.test(phone)){msg("Enter a valid Sri Lankan number in +947XXXXXXXX format.");return}
+  try{
+    const verifier=setupRecaptcha("recaptcha-login");
+    confirmationResult=await signInWithPhoneNumber(auth,phone,verifier);
+    $("otpBox").classList.remove("hidden");msg("OTP sent. Check the phone.", "ok");
+  }catch(e){msg("OTP could not be sent: "+e.message)}
+};
+
+$("verifyOtp").onclick=async()=>{
+  if(!confirmationResult){msg("Request an OTP first.");return}
+  try{
+    const result=await confirmationResult.confirm($("otp").value.trim());
+    await finishPhoneLogin(result.user);
+  }catch(e){msg("OTP verification failed: "+e.message)}
+};
+
+async function finishPhoneLogin(user){
+  const snap=await getDoc(doc(db,"students",user.uid));
+  if(!snap.exists()){await signOut(auth);msg("This phone number is not registered with Scientia Academy.");return}
+  const data=snap.data();
+  if(data.accessStatus!=="active"){await signOut(auth);msg("Payment/access is still pending. Please contact Scientia Academy.");return}
+}
+
+$("verifyRegisterPhone").onclick=async()=>{
+  hideMsg();
+  if(!auth.currentUser){msg("Please register with Google first.");return}
+  const fields=["r_name","r_phone","r_school","r_al","r_nic","r_guardian","r_guardian_phone","r_guardian_nic"];
+  if(fields.some(id=>!$(id).value.trim())||!$("r_consent").checked){msg("Please complete every required field and accept the consent.");return}
+  const phone=normalizePhone($("r_phone").value);
+  if(!/^\+94\d{9}$/.test(phone)){msg("Enter the student's phone as +947XXXXXXXX.");return}
+  try{
+    const verifier=setupRecaptcha("recaptcha-register");
+    registrationConfirmation=await signInWithPhoneNumber(auth,phone,verifier);
+    $("regOtpBox").classList.remove("hidden");msg("OTP sent to the student's phone.", "ok");
+  }catch(e){msg("Phone verification failed: "+e.message)}
+};
+
+$("finishRegister").onclick=async()=>{
+  if(!registrationConfirmation){msg("Request the registration OTP first.");return}
+  try{
+    const result=await registrationConfirmation.confirm($("regOtp").value.trim());
+    const user=result.user;
+    const data={
+      uid:user.uid,email:user.email||"",name:$("r_name").value.trim(),
+      phone:normalizePhone($("r_phone").value),school:$("r_school").value.trim(),
+      alYear:$("r_al").value,studentNIC:$("r_nic").value.trim(),
+      guardianName:$("r_guardian").value.trim(),guardianPhone:normalizePhone($("r_guardian_phone").value),
+      guardianNIC:$("r_guardian_nic").value.trim(),
+      accessStatus:"pending",paymentStatus:"pending",
+      registeredAt:new Date().toISOString(),unlockedMonths:[],videoProgress:{}
+    };
+    await setDoc(doc(db,"students",user.uid),data,{merge:true});
+    msg("Registration completed. Your account is now pending payment verification.", "ok");
+    await signOut(auth);
+    setTimeout(()=>switchAuthTab("login"),900);
+  }catch(e){msg("Registration could not be completed: "+e.message)}
+};
+
+async function loadStudent(user){
+  currentUser=user;
+  const ref=doc(db,"students",user.uid);
+  const snap=await getDoc(ref);
+  if(!snap.exists()){
+    $("portalView").classList.add("hidden");$("loginView").classList.remove("hidden");
+    $("regForm").classList.remove("hidden");$("googleRegister").classList.add("hidden");
+    msg("Google account found. Please complete your free registration form.");switchAuthTab("reg"
