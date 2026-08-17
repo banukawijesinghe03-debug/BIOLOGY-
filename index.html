@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Scientia Academy — Biology 2027 Student Portal</title>
+<meta name="theme-color" content="#06120d">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<style>
+:root{--bg:#04110a;--panel:#081d13;--panel2:#0b2619;--line:rgba(116,205,153,.16);--green:#1e8b59;--green2:#55d98a;--text:#effff5;--muted:#91ae9d;--gold:#c8a96b;--danger:#e56c6c;--blue:#6bb5ff}
+*{box-sizing:border-box}body{margin:0;min-height:100vh;background:radial-gradient(circle at 10% 0%,rgba(38,135,88,.18),transparent 35%),radial-gradient(circle at 100% 100%,rgba(11,75,47,.28),transparent 42%),linear-gradient(145deg,#031009,#071a10 55%,#04130c);color:var(--text);font-family:"Plus Jakarta Sans",Arial,sans-serif}
+button,input,select{font:inherit}.hidden{display:none!important}.wrap{width:min(1050px,94%);margin:30px auto 50px}.card{background:rgba(7,29,19,.9);border:1px solid var(--line);border-radius:20px;box-shadow:0 20px 60px rgba(0,0,0,.28)}.login{max-width:760px;margin:7vh auto;padding:34px}.brand{display:inline-flex;gap:8px;align-items:center;padding:8px 14px;border:1px solid rgba(85,217,138,.25);border-radius:99px;color:#7ce5a6;background:rgba(30,139,89,.12)}h1{font-size:30px;margin:20px 0 7px}.sub{color:var(--muted);line-height:1.6}.btn{border:0;border-radius:10px;padding:12px 15px;cursor:pointer;font-weight:800}.google{width:100%;background:#fff;color:#152016}.primary{background:linear-gradient(135deg,#219b64,#12613e);color:#fff}.gold{background:linear-gradient(135deg,#d4b675,#a27c40);color:#07140c}.ghost{background:#0a2115;color:#b7d4c3;border:1px solid var(--line)}.danger{background:#351414;color:#ffb0b0;border:1px solid #6b2a2a}.msg{margin-top:12px;padding:11px;border-radius:10px;font-size:12px;display:none}.err{background:rgba(229,108,108,.1);border:1px solid rgba(229,108,108,.3);color:#ffb5b5}.ok{background:rgba(85,217,138,.1);border:1px solid rgba(85,217,138,.25);color:#9af0ba}.portal-head{display:flex;align-items:center;justify-content:space-between;gap:15px;padding:16px 18px;border-bottom:1px solid var(--line)}.portal-head strong{display:block;font-size:14px}.portal-head span{display:block;color:var(--muted);font-size:10px;margin-top:3px}.user{display:flex;align-items:center;gap:15px}.avatar{width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:#d5a948;color:#09150d;font-weight:800;font-size:12px}.portal-body{padding:18px}.toolbar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}.toolbar .btn{font-size:11px}.progress{padding:17px;background:linear-gradient(145deg,#09291a,#061a10);border:1px solid var(--line);border-radius:17px;margin-bottom:18px}.ptop{display:flex;justify-content:space-between;gap:12px;align-items:center}.ptitle{font-weight:800;font-size:14px}.pct{color:#72dfa0;font-weight:800}.track{height:9px;border-radius:99px;background:#0b2518;overflow:hidden;margin:12px 0}.fill{height:100%;width:0;background:linear-gradient(90deg,#167548,#55d98a);transition:.25s}.month-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}.mstat{padding:9px;background:rgba(255,255,255,.025);border:1px solid var(--line);border-radius:9px}.mstat b{font-size:10px;display:block}.mstat span{font-size:9px;color:var(--muted)}.mini{height:4px;background:#102a1c;border-radius:99px;overflow:hidden;margin-top:5px}.mini i{display:block;height:100%;background:#42be7b;width:0}.lang{display:flex;gap:8px;margin-bottom:18px}.lang button{flex:1}.month{padding:16px;margin-bottom:14px;background:rgba(7,29,19,.92);border:1px solid var(--line);border-radius:15px}.mhead{display:flex;justify-content:space-between;align-items:center;gap:10px}.mtitle{font-size:14px;font-weight:800;color:#71d99c}.badge{font-size:9px;padding:5px 8px;border-radius:99px}.locked{color:#ffaaaa;background:#321616}.unlocked{color:#8ff0b0;background:#0d3a24}.unlock{display:flex;gap:8px;margin-top:13px}.unlock input{flex:1;min-width:0;background:#06160e;border:1px solid var(--line);border-radius:99px;padding:10px 15px;color:#fff;outline:none}.content{margin-top:16px;border-top:1px solid var(--line);padding-top:16px}.video{background:#010603;border:1px solid rgba(85,217,138,.16);border-radius:13px;overflow:hidden}.vhead{padding:9px 11px;background:#082317;display:flex;justify-content:space-between;font-size:10px;font-weight:800}.player{aspect-ratio:16/9;background:#000;position:relative}.player iframe{width:100%;height:100%;border:0;display:block}.notice{padding:11px;border-radius:10px;background:#0a2517;border:1px solid var(--line);font-size:10px;color:#9db9a8;margin-bottom:13px}@media(max-width:700px){.month-grid{grid-template-columns:repeat(2,1fr)}.login{padding:23px;margin-top:25px}.wrap{width:96%;margin-top:14px}h1{font-size:25px}.portal-body{padding:12px}.portal-head{padding:12px}#userEmail{display:none}}
+</style>
+</head>
+<body>
+
+<div id="loginView" class="wrap">
+<div class="card login">
+<div class="brand"><i class="fa-solid fa-graduation-cap"></i> Scientia Academy</div>
+<h1>100-Hour Student Portal</h1>
+<div class="sub">Biology 2027 A/L Theory & Revision Course</div>
+<section style="margin-top:25px">
+<button id="googleLogin" class="btn google"><i class="fa-brands fa-google"></i>&nbsp; Sign in with Google</button>
+<div id="message" class="msg"></div>
+</section>
+</div>
+</div>
+
+<div id="portalView" class="wrap hidden">
+<div class="card">
+<header class="portal-head">
+<div><strong>Scientia Academy — Biology 2027</strong><span id="cloudStatus">Active Student Portal</span></div>
+<div class="user"><div id="avatar" class="avatar">S</div><span id="userEmail" style="font-size:10px;color:#a9c3b3"></span><button id="logout" class="btn danger" style="padding:7px 9px"><i class="fa-solid fa-right-from-bracket"></i> Exit</button></div>
+</header>
+
+<div class="portal-body">
+<div class="toolbar">
+<button id="pdfBtn" class="btn gold"><i class="fa-solid fa-file-pdf"></i> Download Progress PDF</button>
+</div>
+
+<div class="progress">
+<div class="ptop"><div class="ptitle"><i class="fa-solid fa-chart-line"></i> Overall Course Completion</div><div id="overallPct" class="pct">0%</div></div>
+<div class="track"><div id="overallFill" class="fill"></div></div>
+<div id="monthStats" class="month-grid"></div>
+</div>
+
+<div class="lang">
+<button id="sinBtn" class="btn primary">Sinhala Medium</button>
+<button id="engBtn" class="btn ghost">English Medium</button>
+</div>
+
+<div id="sinContent"></div>
+<div id="engContent" class="hidden"></div>
+</div>
+</div>
+</div>
+
+<script type="module">
+import{initializeApp}from"https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
+import{getAuth,GoogleAuthProvider,signInWithPopup,signInWithRedirect,getRedirectResult,onAuthStateChanged,signOut}from"https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
+import{getFirestore,doc,getDoc,setDoc}from"https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
+
+const firebaseConfig={
+apiKey:"AIzaSyDkUnbL1QFJsN3e_FeTvPxwjOhhWtkaHWg",
+authDomain:"biology2027portal.firebaseapp.com",
+projectId:"biology2027portal",
+storageBucket:"biology2027portal.firebasestorage.app",
+messagingSenderId:"1080917473117",
+appId:"1:1080917473117:web:27cb3c45e24b922e215ab4"
+};
+
+const app=initializeApp(firebaseConfig);
+const auth=getAuth(app);
+const db=getFirestore(app);
+const googleProvider=new GoogleAuthProvider();
+
+const playlists={
+m1:{sinhala:"PLknJfga_PCc_akD9ooopp1EF4yOdY0toO",english:"PLknJfga_PCc-m5i46JIEae9IdWeKgAEg7"},
+m2:{sinhala:"",english:""},
+m3:{sinhala:"",english:""},
+m4:{sinhala:"",english:""},
+m5:{sinhala:"",english:""},
+m6:{sinhala:"",english:""},
+m7:{sinhala:"",english:""},
+m8:{sinhala:"",english:""}
+};
+
+let currentUser=null;
+let currentStudent={name:"",email:"",unlockedMonths:[]};
+const $=id=>document.getElementById(id);
+
+function showMessage(text,type="err"){
+const box=$("message");
+box.textContent=text;
+box.className="msg "+(type==="ok"?"ok":"err");
+box.style.display="block";
+}
+
+$("googleLogin").onclick=async()=>{
+try{
+await signInWithPopup(auth,googleProvider);
+}catch(error){
+console.error(error);
+if(error.code==="auth/popup-blocked"||error.code==="auth/popup-closed-by-user"){
+try{
+await signInWithRedirect(auth,googleProvider);
+}catch(e){
+showMessage("Google Sign-in Error: "+e.message);
+}
+}else{
+showMessage("Google Sign-in Error: "+error.message);
+}
+}
+};
+
+getRedirectResult(auth).catch(error=>console.error("Redirect error:",error));
+
+onAuthStateChanged(auth,async user=>{
+if(user){
+currentUser=user;
+await loadStudent();
+}else{
+currentUser=null;
+$("loginView").classList.remove("hidden");
+$("portalView").classList.add("hidden");
+}
+});
+
+async function loadStudent(){
+if(!currentUser)return;
+$("cloudStatus").textContent="Loading student account...";
+try{
+const studentRef=doc(db,"students",currentUser.uid);
+const snapshot=await getDoc(studentRef);
+
+if(snapshot.exists()){
+currentStudent=snapshot.data();
+}else{
+currentStudent={
+name:currentUser.displayName||"Student",
+email:currentUser.email||"",
+unlockedMonths:[]
+};
+await setDoc(studentRef,currentStudent);
+}
+
+if(!Array.isArray(currentStudent.unlockedMonths)){
+currentStudent.unlockedMonths=[];
+}
+
+openPortal();
+}catch(error){
+console.error(error);
+showMessage("Unable to load student account: "+error.message);
+$("cloudStatus").textContent="Account error";
+}
+}
+
+function openPortal(){
+$("loginView").classList.add("hidden");
+$("portalView").classList.remove("hidden");
+$("userEmail").textContent=currentUser?.email||"Student";
+const name=currentUser?.displayName||"Student";
+$("avatar").textContent=name.charAt(0).toUpperCase();
+$("cloudStatus").textContent="Active Student Portal";
+renderPortal();
+}
+
+function overallProgress(){
+let completed=0;
+for(let i=1;i<=8;i++){
+const s=currentStudent.unlockedMonths.includes("m"+i+"_sinhala");
+const e=currentStudent.unlockedMonths.includes("m"+i+"_english");
+if(s||e)completed+=12.5;
+}
+return Math.min(Math.round(completed),100);
+}
+
+function renderStats(){
+const progress=overallProgress();
+$("overallPct").textContent=progress+"%";
+$("overallFill").style.width=progress+"%";
+let html="";
+for(let i=1;i<=8;i++){
+const unlocked=currentStudent.unlockedMonths.includes("m"+i+"_sinhala")||currentStudent.unlockedMonths.includes("m"+i+"_english");
+html+=`<div class="mstat"><b>Month ${String(i).padStart(2,"0")}</b><span>${unlocked?"Unlocked":"Locked"}</span><div class="mini"><i style="width:${unlocked?100:0}%"></i></div></div>`;
+}
+$("monthStats").innerHTML=html;
+}
+
+function monthHTML(i,lang){
+const key="m"+i;
+const accessKey=key+"_"+lang;
+const unlocked=currentStudent.unlockedMonths.includes(accessKey);
+const playlist=playlists[key]?.[lang]||"";
+const embed=playlist?`https://www.youtube.com/embed/videoseries?list=${encodeURIComponent(playlist)}`:"";
+const title=i<=6?"Theory Unit Coverage":"Revision Series";
+
+let content="";
+
+if(!unlocked){
+content=`<div class="notice"><i class="fa-solid fa-lock"></i> This month is locked. Please contact Scientia Academy to request access.</div>`;
+}else if(embed){
+content=`<div class="video"><div class="vhead"><span>${lang.toUpperCase()} MEDIUM</span><span>MONTH ${String(i).padStart(2,"0")}</span></div><div class="player"><iframe src="${embed}" title="Biology 2027 Course" allow="autoplay; encrypted-media" allowfullscreen></iframe></div></div>`;
+}else{
+content=`<div class="notice"><i class="fa-solid fa-circle-info"></i> Playlist update in progress.</div>`;
+}
+
+return `<article class="month"><div class="mhead"><div class="mtitle"><i class="fa-solid fa-book-open"></i> Month ${String(i).padStart(2,"0")}: ${title}</div><span class="badge ${unlocked?"unlocked":"locked"}">${unlocked?"UNLOCKED":"LOCKED"}</span></div><div class="content">${content}</div></article>`;
+}
+
+function renderPortal(){
+renderStats();
+$("sinContent").innerHTML=Array.from({length:8},(_,i)=>monthHTML(i+1,"sinhala")).join("");
+$("engContent").innerHTML=Array.from({length:8},(_,i)=>monthHTML(i+1,"english")).join("");
+}
+
+$("sinBtn").onclick=()=>{
+$("sinContent").classList.remove("hidden");
+$("engContent").classList.add("hidden");
+$("sinBtn").className="btn primary";
+$("engBtn").className="btn ghost";
+};
+
+$("engBtn").onclick=()=>{
+$("engContent").classList.remove("hidden");
+$("sinContent").classList.add("hidden");
+$("engBtn").className="btn primary";
+$("sinBtn").className="btn ghost";
+};
+
+$("pdfBtn").onclick=()=>{
+if(!window.jspdf){
+alert("PDF library is still loading.");
+return;
+}
+
+const{jsPDF}=window.jspdf;
+const pdf=new jsPDF();
+const name=currentUser?.displayName||"Student";
+const email=currentUser?.email||"";
+
+pdf.setFontSize(20);
+pdf.text("Scientia Academy",20,25);
+pdf.setFontSize(13);
+pdf.text("Biology 2027 Student Progress",20,36);
+pdf.setFontSize(10);
+pdf.text("Student: "+name,20,52);
+pdf.text("Email: "+email,20,60);
+pdf.text("Overall Completion: "+overallProgress()+"%",20,72);
+
+let y=88;
+for(let i=1;i<=8;i++){
+const unlocked=currentStudent.unlockedMonths.some(x=>x.startsWith("m"+i+"_"));
+pdf.text(`Month ${String(i).padStart(2,"0")}: ${unlocked?"Unlocked":"Locked"}`,20,y);
+y+=10;
+}
+
+pdf.save("Scientia-Biology-2027-Progress.pdf");
+};
+
+$("logout").onclick=async()=>{
+try{
+await signOut(auth);
+}catch(error){
+alert("Logout failed: "+error.message);
+}
+};
+</script>
+</body>
+</html>
